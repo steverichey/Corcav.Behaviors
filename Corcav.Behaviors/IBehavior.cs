@@ -22,7 +22,6 @@ namespace Corcav.Behaviors
         /// Attaches the specified dependency object to this behavior.
         /// </summary>
         /// <param name="associatedObject">The associated object.</param>
-        /// <exception cref="InvalidOperationException">Raised when attached element doesn't match declared type.</exception>
         void Attach(BindableObject associatedObject);
 
         /// <summary>

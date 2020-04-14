@@ -222,7 +222,7 @@ namespace Corcav.Behaviors
             Command = pi.GetValue(this.CommandNameContext) as ICommand;
 
             if (Command == null)
-            { 
+            {
                 throw new ArgumentNullException($"Can't create binding with CommandName '{CommandName}'");
             }
         }

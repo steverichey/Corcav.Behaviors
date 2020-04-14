@@ -1,4 +1,4 @@
-// <copyright file="BehaviorCollection.cs" company="Float">
+// <copyright file="MainViewModel.cs" company="Float">
 // Copyright (c) 2020 Float, All rights reserved.
 // Shared under an MIT license. See license.md for details.
 // </copyright>
@@ -12,8 +12,6 @@ namespace Corcav.Behaviors.Demo.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private string firstName = "FirstName";
         private string lastName = "LastName";
         private Command testCommand;
@@ -21,6 +19,8 @@ namespace Corcav.Behaviors.Demo.ViewModels
         private string message;
         private string welcomeMessage;
         private Command<string> nickSelectedCommand;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
@@ -31,7 +31,7 @@ namespace Corcav.Behaviors.Demo.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets FirstName property
+        /// Gets or sets FirstName property.
         /// </summary>
         public string FirstName
         {
@@ -52,7 +52,7 @@ namespace Corcav.Behaviors.Demo.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets LastName property
+        /// Gets or sets LastName property.
         /// </summary>
         public string LastName
         {
@@ -73,7 +73,7 @@ namespace Corcav.Behaviors.Demo.ViewModels
         }
 
         /// <summary>
-        /// Gets then Message for the user
+        /// Gets then Message for the user.
         /// </summary>
         public string Message
         {
@@ -92,9 +92,8 @@ namespace Corcav.Behaviors.Demo.ViewModels
             }
         }
 
-
         /// <summary>
-        /// Gets or sets WelcomeMessage property
+        /// Gets or sets WelcomeMessage property.
         /// </summary>
         public string WelcomeMessage
         {
@@ -112,7 +111,6 @@ namespace Corcav.Behaviors.Demo.ViewModels
                 }
             }
         }
-
 
         /// <summary>
         /// Gets the TestCommand.
@@ -171,14 +169,11 @@ namespace Corcav.Behaviors.Demo.ViewModels
             }
         }
 
-
         public ObservableCollection<Item> Items { get; private set; }
-
 
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

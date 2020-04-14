@@ -17,7 +17,6 @@ namespace Corcav.Behaviors
         /// </summary>
         public static readonly BindableProperty TextProperty = BindableProperty.Create<TextChangedBehavior, string>(p => p.Text, null, propertyChanged: OnTextChanged);
 
-
         /// <summary>
         /// Gets or sets the text.
         /// </summary>
