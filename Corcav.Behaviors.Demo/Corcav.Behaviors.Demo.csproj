@@ -9,14 +9,14 @@
     <CodeAnalysisRuleSet>../stylecop.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
-    <Folder Include="Library\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
   </ItemGroup>
 </Project>

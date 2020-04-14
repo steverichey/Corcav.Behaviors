@@ -1,40 +1,53 @@
+// <copyright file="TextChangedBehavior.cs" company="Float">
+// Copyright (c) 2020 Float, All rights reserved.
+// Shared under an MIT license. See license.md for details.
+// </copyright>
+
+using Xamarin.Forms;
 
 namespace Corcav.Behaviors
 {
-	using Xamarin.Forms;
+    /// <summary>
+    /// Updates text while entry text changes.
+    /// </summary>
+    public class TextChangedBehavior : Behavior<Entry>
+    {
+        /// <summary>
+        /// Binding to the text property.
+        /// </summary>
+        public static readonly BindableProperty TextProperty = BindableProperty.Create<TextChangedBehavior, string>(p => p.Text, null, propertyChanged: OnTextChanged);
 
-	/// <summary>
-	/// Updates text while Entry text changes
-	/// </summary>
-	public class TextChangedBehavior : Behavior<Entry>
-	{
-		public static readonly BindableProperty TextProperty = BindableProperty.Create<TextChangedBehavior, string>(p => p.Text, null, propertyChanged: OnTextChanged);
 
-		private static void OnTextChanged(BindableObject bindable, string oldvalue, string newvalue)
-		{
-			(bindable as TextChangedBehavior).AssociatedObject.Text = newvalue;
-		}
+        /// <summary>
+        /// Gets or sets the text.
+        /// </summary>
+        /// <value>The text.</value>
+        public string Text
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
 
-		public string Text
-		{
-			get { return (string)GetValue(TextProperty); }
-			set { SetValue(TextProperty, value); }
-		}
+        /// <inheritdoc />
+        protected override void OnAttach()
+        {
+            this.AssociatedObject.TextChanged += OnTextChanged;
+        }
 
-		protected override void OnAttach()
-		{
-			this.AssociatedObject.TextChanged += this.OnTextChanged;
+        /// <inheritdoc />
+        protected override void OnDetach()
+        {
+            this.AssociatedObject.TextChanged -= OnTextChanged;
+        }
 
-		}
+        static void OnTextChanged(BindableObject bindable, string oldvalue, string newvalue)
+        {
+            (bindable as TextChangedBehavior).AssociatedObject.Text = newvalue;
+        }
 
-		private void OnTextChanged(object sender, TextChangedEventArgs e)
-		{
-			this.Text = e.NewTextValue;
-		}
-
-		protected override void OnDetach()
-		{
-			this.AssociatedObject.TextChanged -= this.OnTextChanged;
-		}
-	}
+        void OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.Text = e.NewTextValue;
+        }
+    }
 }
