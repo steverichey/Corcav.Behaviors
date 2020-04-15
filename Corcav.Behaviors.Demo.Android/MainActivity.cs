@@ -1,4 +1,4 @@
-﻿// <copyright file="BehaviorCollection.cs" company="Float">
+﻿// <copyright file="MainActivity.cs" company="Float">
 // Copyright (c) 2020 Float, All rights reserved.
 // Shared under an MIT license. See license.md for details.
 // </copyright>
@@ -7,17 +7,22 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 namespace Corcav.Behaviors.Demo.Droid
 {
-	[Activity(Label = "Corcav.Behaviors.Demo", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-	public class MainActivity : Xamarin.Forms.Platform.Android.FormsApplicationActivity
-	{
-		protected override void OnCreate(Bundle bundle)
-		{
-			base.OnCreate(bundle);
-			Forms.Init(this, bundle);
-			LoadApplication(new App());
-		}
-	}
+    /// <summary>
+    /// The starting point for the application.
+    /// </summary>
+    [Activity(Label = "Corcav.Behaviors.Demo", MainLauncher = true)]
+    public class MainActivity : FormsApplicationActivity
+    {
+        /// <inheritdoc />
+        protected override void OnCreate(Bundle bundle)
+        {
+            base.OnCreate(bundle);
+            Forms.Init(this, bundle);
+            LoadApplication(new App());
+        }
+    }
 }
