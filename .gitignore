@@ -110,7 +110,6 @@ AppPackages/
 sql/
 *.Cache
 ClientBin/
-[Ss]tyle[Cc]op.*
 ~$*
 *~
 *.dbmdl
@@ -154,16 +153,6 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
-/.vs/config
-/packages/Xamarin.Forms.2.2.0.45
-/packages/Xamarin.Android.Support.Animated.Vector.Drawable.23.3.0
-/packages/Xamarin.Android.Support.Design.23.3.0
-/packages/Xamarin.Android.Support.v4.23.3.0
-/packages/Xamarin.Android.Support.v7.AppCompat.23.3.0
-/packages/Xamarin.Android.Support.v7.CardView.23.3.0
-/packages/Xamarin.Android.Support.v7.MediaRouter.23.3.0
-/packages/Xamarin.Android.Support.v7.RecyclerView.23.3.0
-/packages/Xamarin.Android.Support.Vector.Drawable.23.3.0
-/Corcav.Behaviors.Demo/Corcav.Behaviors.Demo.UWP/project.lock.json
 
+# Visual Studio config
 .vs
