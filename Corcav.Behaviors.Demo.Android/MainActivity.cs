@@ -4,7 +4,6 @@
 // </copyright>
 
 using Android.App;
-using Android.Content.PM;
 using Android.OS;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -14,7 +13,7 @@ namespace Corcav.Behaviors.Demo.Droid
     /// <summary>
     /// The starting point for the application.
     /// </summary>
-    [Activity(Label = "Corcav.Behaviors.Demo", MainLauncher = true)]
+    [Activity(MainLauncher = true)]
     public class MainActivity : FormsApplicationActivity
     {
         /// <inheritdoc />
