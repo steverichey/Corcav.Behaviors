@@ -22,4 +22,7 @@
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Corcav.Behaviors\Corcav.Behaviors.csproj" />
+  </ItemGroup>
 </Project>
