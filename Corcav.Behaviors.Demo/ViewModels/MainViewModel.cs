@@ -10,167 +10,187 @@ using Xamarin.Forms;
 
 namespace Corcav.Behaviors.Demo.ViewModels
 {
+    /// <summary>
+    /// The main view model.
+    /// </summary>
     public class MainViewModel : INotifyPropertyChanged
     {
-        private string firstName = "FirstName";
-        private string lastName = "LastName";
-        private Command testCommand;
-        private Command<object> unfocusedCommand;
-        private string message;
-        private string welcomeMessage;
-        private Command<string> nickSelectedCommand;
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        string firstName = "FirstName";
+        string lastName = "LastName";
+        string message;
+        string welcomeMessage;
+        Command testCommand;
+        Command<object> unfocusedCommand;
+        Command<string> nickSelectedCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
         /// </summary>
         public MainViewModel()
         {
-            this.Items = new ObservableCollection<Item>() { new Item() { NickName = "corcav" }, new Item() { NickName = "foo99" }, new Item() { NickName = "bar76" } };
+            this.Items = new ObservableCollection<Item>()
+            {
+                new Item()
+                {
+                    NickName = "corcav",
+                },
+                new Item()
+                {
+                    NickName = "foo99",
+                },
+                new Item()
+                {
+                    NickName = "bar76",
+                },
+            };
         }
 
         /// <summary>
-        /// Gets or sets FirstName property.
+        /// Fired when a property changes.
         /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Gets or sets the first name property.
+        /// </summary>
+        /// <value>The first name.</value>
         public string FirstName
         {
-            get
-            {
-                return this.firstName;
-            }
+            get => firstName;
 
             set
             {
-                if (value != this.firstName)
+                if (value != firstName)
                 {
-                    this.firstName = value;
-                    this.RaisePropertyChanged();
-                    this.TestCommand.ChangeCanExecute();
+                    firstName = value;
+                    RaisePropertyChanged();
+                    TestCommand.ChangeCanExecute();
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets LastName property.
+        /// Gets or sets the last name property.
         /// </summary>
+        /// <value>The last name.</value>
         public string LastName
         {
-            get
-            {
-                return this.lastName;
-            }
+            get => lastName;
 
             set
             {
-                if (value != this.lastName)
+                if (value != lastName)
                 {
-                    this.lastName = value;
-                    this.RaisePropertyChanged();
-                    this.TestCommand.ChangeCanExecute();
+                    lastName = value;
+                    RaisePropertyChanged();
+                    TestCommand.ChangeCanExecute();
                 }
             }
         }
 
         /// <summary>
-        /// Gets then Message for the user.
+        /// Gets the message for the user.
         /// </summary>
+        /// <value>The message.</value>
         public string Message
         {
-            get
-            {
-                return this.message;
-            }
+            get => message;
 
             private set
             {
-                if (value != this.message)
+                if (value != message)
                 {
-                    this.message = value;
-                    this.RaisePropertyChanged();
+                    message = value;
+                    RaisePropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets WelcomeMessage property.
+        /// Gets the welcome message.
         /// </summary>
+        /// <value>The welcome message.</value>
         public string WelcomeMessage
         {
-            get
-            {
-                return this.welcomeMessage;
-            }
+            get => welcomeMessage;
 
-            set
+            private set
             {
-                if (value != this.welcomeMessage)
+                if (value != welcomeMessage)
                 {
-                    this.welcomeMessage = value;
-                    this.RaisePropertyChanged();
+                    welcomeMessage = value;
+                    RaisePropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Gets the TestCommand.
+        /// Gets the test command.
         /// </summary>
+        /// <value>The test command.</value>
         public Command TestCommand
         {
             get
             {
-                return this.testCommand ?? (this.testCommand = new Command(
-                     () =>
-                     {
-                         this.WelcomeMessage = string.Format("Hello {0} {1}", this.FirstName, this.LastName);
-                     },
-                     () =>
-                     {
-                         // CanExecute delegate
-                         return !string.IsNullOrEmpty(this.FirstName) && !string.IsNullOrEmpty(this.LastName);
-                     }));
+                if (testCommand != null)
+                {
+                    return testCommand;
+                }
+
+                testCommand = new Command(
+                    () => { WelcomeMessage = $"Hello {FirstName} {LastName}"; },
+                    () => !string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName));
+
+                return testCommand;
             }
         }
 
         /// <summary>
-        /// Gets the UnfocusedCommand.
+        /// Gets the unfocused command.
         /// </summary>
+        /// <value>The unfocused command.</value>
         public Command<object> UnfocusedCommand
         {
             get
             {
-                return this.unfocusedCommand ?? (this.unfocusedCommand = new Command<object>(
-                     (param) =>
-                     {
-                         this.Message = string.Format("Unfocused raised with param {0}", param);
-                     },
-                     (param) =>
-                     {
-                         // CanExecute delegate
-                         return true;
-                     }));
+                if (unfocusedCommand != null)
+                {
+                    return unfocusedCommand;
+                }
+
+                unfocusedCommand = new Command<object>(param => { Message = $"Unfocused raised with param {param}"; }, _ => true);
+                return unfocusedCommand;
             }
         }
 
+        /// <summary>
+        /// Gets the nick selected command.
+        /// </summary>
+        /// <value>The nick selected command.</value>
         public Command<string> NickSelectedCommand
         {
             get
             {
-                return this.nickSelectedCommand ?? (this.nickSelectedCommand = new Command<string>(
-                     (param) =>
-                     {
-                         this.Message = string.Format("Item {0} selected", param);
-                     },
-                     (param) =>
-                     {
-                         // CanExecute delegate
-                         return true;
-                     }));
+                if (nickSelectedCommand != null)
+                {
+                    return nickSelectedCommand;
+                }
+
+                nickSelectedCommand = new Command<string>(param => { Message = $"Item {param} selected"; }, _ => true);
+                return nickSelectedCommand;
             }
         }
 
-        public ObservableCollection<Item> Items { get; private set; }
+        /// <summary>
+        /// Gets the items in this view.
+        /// </summary>
+        /// <value>The items in this view.</value>
+        public ObservableCollection<Item> Items { get; }
 
+        /// <summary>
+        /// Raise a property changed event, based on the caller name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that is calling this method.</param>
         protected virtual void RaisePropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
