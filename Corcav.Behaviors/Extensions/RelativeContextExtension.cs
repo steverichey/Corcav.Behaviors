@@ -33,23 +33,25 @@ namespace Corcav.Behaviors
         {
             if (serviceProvider == null)
             {
-                throw new ArgumentNullException("serviceProvider");
+                throw new ArgumentNullException(nameof(serviceProvider));
             }
 
-            if (!(serviceProvider.GetService(typeof(IRootObjectProvider)) is IRootObjectProvider rootObjectProvider))
+            if (!(serviceProvider.GetService<IRootObjectProvider>() is IRootObjectProvider rootObjectProvider))
             {
                 throw new ArgumentException("serviceProvider does not provide an IRootObjectProvider");
             }
 
-            if (string.IsNullOrEmpty(this.Name))
+            if (string.IsNullOrWhiteSpace(Name))
             {
-                throw new ArgumentNullException("Name");
+                throw new InvalidOperationException($"Property {nameof(Name)} is required");
             }
 
-            var nameScope = rootObjectProvider.RootObject as Element;
-            var element = nameScope.FindByName<Element>(this.Name);
+            if (!(rootObjectProvider.RootObject is Element nameScope))
+            {
+                throw new InvalidOperationException($"{nameof(rootObjectProvider)} does not provide a root object");
+            }
 
-            if (element == null)
+            if (!(nameScope.FindByName<Element>(Name) is Element element))
             {
                 throw new ArgumentNullException($"Can't find element named '{Name}'");
             }
@@ -57,7 +59,7 @@ namespace Corcav.Behaviors
             var context = element.BindingContext;
             rootElement = element;
 
-            if (!(serviceProvider.GetService(typeof(IProvideValueTarget)) is IProvideValueTarget ipvt))
+            if (!(serviceProvider.GetService<IProvideValueTarget>() is IProvideValueTarget ipvt))
             {
                 throw new ArgumentException("serviceProvider does not provide an IProvideValueTarget");
             }
