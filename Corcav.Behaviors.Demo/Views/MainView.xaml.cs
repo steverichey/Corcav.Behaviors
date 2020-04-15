@@ -8,8 +8,14 @@ using Xamarin.Forms;
 
 namespace Corcav.Behaviors.Demo.Views
 {
+    /// <summary>
+    /// The main view.
+    /// </summary>
     public partial class MainView : ContentPage
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainView"/> class.
+        /// </summary>
         public MainView()
         {
             InitializeComponent();
