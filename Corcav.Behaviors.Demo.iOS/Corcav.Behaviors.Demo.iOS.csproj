@@ -15,7 +15,6 @@
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
     <ProvisioningType>automatic</ProvisioningType>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +37,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
+    <IntermediateOutputPath></IntermediateOutputPath>
+    <MtouchFastDev></MtouchFastDev>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +91,10 @@
     <ProjectReference Include="..\Corcav.Behaviors.Demo\Corcav.Behaviors.Demo.csproj">
       <Project>{8731AAE5-A046-40B6-A42F-F10298D29423}</Project>
       <Name>Corcav.Behaviors.Demo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Corcav.Behaviors\Corcav.Behaviors.csproj">
+      <Project>{C84FAAE9-4B5A-4A73-9287-88563AE82C33}</Project>
+      <Name>Corcav.Behaviors</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

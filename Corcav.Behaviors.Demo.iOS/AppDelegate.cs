@@ -21,6 +21,7 @@ namespace Corcav.Behaviors.Demo.iOS
         {
             Forms.Init();
             LoadApplication(new App());
+            Infrastructure.Init();
             return base.FinishedLaunching(app, options);
         }
     }
