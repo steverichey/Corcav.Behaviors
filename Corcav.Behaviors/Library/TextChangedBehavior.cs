@@ -15,7 +15,7 @@ namespace Corcav.Behaviors
         /// <summary>
         /// Binding to the text property.
         /// </summary>
-        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextChangedBehavior));
+        public static readonly BindableProperty TextProperty = BindableProperty.Create<TextChangedBehavior, string>(p => p.Text, null, propertyChanged: OnTextChanged);
 
         /// <summary>
         /// Gets or sets the text.
@@ -37,6 +37,11 @@ namespace Corcav.Behaviors
         protected override void OnDetach()
         {
             AssociatedObject.TextChanged -= OnTextChanged;
+        }
+
+        static void OnTextChanged(BindableObject bindable, string oldvalue, string newvalue)
+        {
+            (bindable as TextChangedBehavior).AssociatedObject.Text = newvalue;
         }
 
         void OnTextChanged(object sender, TextChangedEventArgs e)
