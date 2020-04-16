@@ -93,7 +93,7 @@
       <Name>Corcav.Behaviors.Demo</Name>
     </ProjectReference>
     <ProjectReference Include="..\Corcav.Behaviors\Corcav.Behaviors.csproj">
-      <Project>{C84FAAE9-4B5A-4A73-9287-88563AE82C33}</Project>
+      <Project>{C10D28A1-FA73-4823-B829-C1353D213EFC}</Project>
       <Name>Corcav.Behaviors</Name>
     </ProjectReference>
   </ItemGroup>
