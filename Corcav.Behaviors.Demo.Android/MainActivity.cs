@@ -13,13 +13,17 @@ namespace Corcav.Behaviors.Demo.Droid
     /// <summary>
     /// The starting point for the application.
     /// </summary>
-    [Activity(MainLauncher = true)]
-    public class MainActivity : FormsApplicationActivity
+    [Activity(Theme = "@style/MainTheme", MainLauncher = true)]
+    public class MainActivity : FormsAppCompatActivity
     {
         /// <inheritdoc />
         protected override void OnCreate(Bundle bundle)
         {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
             base.OnCreate(bundle);
+
             Forms.Init(this, bundle);
             LoadApplication(new App());
         }
