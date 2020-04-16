@@ -80,6 +80,10 @@
       <Project>{8731AAE5-A046-40B6-A42F-F10298D29423}</Project>
       <Name>Corcav.Behaviors.Demo</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Corcav.Behaviors\Corcav.Behaviors.csproj">
+      <Project>{C10D28A1-FA73-4823-B829-C1353D213EFC}</Project>
+      <Name>Corcav.Behaviors</Name>
+    </ProjectReference>
   </ItemGroup>
  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
