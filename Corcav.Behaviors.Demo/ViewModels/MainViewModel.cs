@@ -28,7 +28,7 @@ namespace Corcav.Behaviors.Demo.ViewModels
         /// </summary>
         public MainViewModel()
         {
-            this.Items = new ObservableCollection<Item>()
+            Items = new ObservableCollection<Item>()
             {
                 new Item()
                 {

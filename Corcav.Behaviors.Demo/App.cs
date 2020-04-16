@@ -5,9 +5,6 @@
 
 using Corcav.Behaviors.Demo.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace Corcav.Behaviors.Demo
 {
