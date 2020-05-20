@@ -4,6 +4,8 @@
 // </copyright>
 
 using System;
+using System.Diagnostics.Contracts;
+using System.Globalization;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -31,24 +33,21 @@ namespace Corcav.Behaviors
         /// <returns>The provided value.</returns>
         public object ProvideValue(IServiceProvider serviceProvider)
         {
-            if (serviceProvider == null)
-            {
-                throw new ArgumentNullException(nameof(serviceProvider));
-            }
+            Contract.Requires(serviceProvider != null);
 
             if (!(serviceProvider.GetService<IRootObjectProvider>() is IRootObjectProvider rootObjectProvider))
             {
-                throw new ArgumentException("serviceProvider does not provide an IRootObjectProvider");
+                throw new ArgumentException(Resources.ServiceProviderDoesNot);
             }
 
             if (string.IsNullOrWhiteSpace(Name))
             {
-                throw new InvalidOperationException($"Property {nameof(Name)} is required");
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.PropertyRequired, nameof(Name)));
             }
 
             if (!(rootObjectProvider.RootObject is Element nameScope))
             {
-                throw new InvalidOperationException($"{nameof(rootObjectProvider)} does not provide a root object");
+                throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture, Resources.DoesNotProvideRoot, nameof(rootObjectProvider)));
             }
 
             if (!(nameScope.FindByName<Element>(Name) is Element element))
@@ -61,7 +60,7 @@ namespace Corcav.Behaviors
 
             if (!(serviceProvider.GetService<IProvideValueTarget>() is IProvideValueTarget ipvt))
             {
-                throw new ArgumentException("serviceProvider does not provide an IProvideValueTarget");
+                throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, Resources.DoesNotProvide, nameof(serviceProvider), nameof(IProvideValueTarget)));
             }
 
             attachedObject = ipvt.TargetObject as BindableObject;

@@ -4,6 +4,7 @@
 // </copyright>
 
 using System.Collections.Specialized;
+using System.Diagnostics.Contracts;
 using Xamarin.Forms;
 
 namespace Corcav.Behaviors
@@ -32,6 +33,7 @@ namespace Corcav.Behaviors
         /// <returns>The behaviors in the given object.</returns>
         public static BehaviorCollection GetBehaviors(BindableObject target)
         {
+            Contract.Requires(target != null);
             return (BehaviorCollection)target.GetValue(BehaviorsProperty);
         }
 
@@ -42,6 +44,7 @@ namespace Corcav.Behaviors
         /// <param name="value">The value to set on the behaviors property.</param>
         public static void SetBehaviors(BindableObject target, BehaviorCollection value)
         {
+            Contract.Requires(target != null);
             target.SetValue(BehaviorsProperty, value);
         }
 

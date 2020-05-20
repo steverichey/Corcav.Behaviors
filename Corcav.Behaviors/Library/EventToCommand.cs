@@ -4,6 +4,7 @@
 // </copyright>
 
 using System;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -181,15 +182,8 @@ namespace Corcav.Behaviors
                 }
             }
 
-            if (Command == null)
-            {
-                throw new InvalidOperationException("No command available, Is Command properly set up?");
-            }
-
-            if (e == null && CommandParameter == null)
-            {
-                throw new InvalidOperationException("You need a CommandParameter");
-            }
+            Contract.Requires(Command != null);
+            Contract.Requires(e != null || CommandParameter != null);
 
             if (Command != null && Command.CanExecute(param))
             {
@@ -202,15 +196,8 @@ namespace Corcav.Behaviors
         /// </summary>
         void CreateRelativeBinding()
         {
-            if (CommandNameContext == null)
-            {
-                throw new ArgumentNullException("CommandNameContext property cannot be null when using CommandName property, consider using CommandNameContext={b:RelativeContext [ElementName]} markup markup extension.");
-            }
-
-            if (Command != null)
-            {
-                throw new InvalidOperationException("Both Command and CommandName properties specified, only one mode supported.");
-            }
+            Contract.Requires(CommandNameContext != null);
+            Contract.Requires(Command != null);
 
             var pi = CommandNameContext.GetType().GetRuntimeProperty(CommandName);
 

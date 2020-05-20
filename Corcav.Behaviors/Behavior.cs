@@ -3,7 +3,10 @@
 // Shared under an MIT license. See license.md for details.
 // </copyright>
 
+using System.Resources;
 using Xamarin.Forms;
+
+[assembly: NeutralResourcesLanguage("en-US")]
 
 namespace Corcav.Behaviors
 {
